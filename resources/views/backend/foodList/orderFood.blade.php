@@ -53,15 +53,16 @@
                      <h4 class="header-title mb-3">Food Order List</h4>
                      {{-- <a href="{{ route('admin.menuList.create') }}"><i class="fa fa-plus-circle"></i> Add New Menu</a> --}}
                      <form>
+                         @csrf
                         <div class="form-row">
                           <div class="col-sm-3 col-12">
-                            <input type="text" class="form-control" placeholder="Enter User Enroll">
+                            <input type="text" class="form-control" placeholder="Enter User Enroll" name="enrollment">
                           </div>
                           <div class="col-sm-3 col-12">
-                            <input type="text" class="form-control" placeholder="From Date" id="depart">
+                            <input type="text" class="form-control" placeholder="From Date" id="depart" name="startDate">
                           </div>
                           <div class="col-sm-3 col-12">
-                            <input type="text" class="form-control" placeholder="To Date" id="return">
+                            <input type="text" class="form-control" placeholder="To Date" id="return" name="endDate">
                           </div>
                           <div class="col-sm-3 col-12">
                             <button type="submit" class="btn btn-outline-primary"><i class="fas fa-filter"></i></button>
