@@ -45,8 +45,8 @@ $user = Auth::guard('web')->user();
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-users" aria-hidden="true"></i><span>Food Order List
                             </span></a>
                         <ul class="collapse">
-                            <li><a href="{{ route('admin.menuList.create') }}"><i class="ti-arrow-right"></i> Daily Order List</a></li>
-                            <li><a href="{{ route('admin.menuList.index') }}"><i class="ti-arrow-right"></i> Monthly Order List</a></li>
+                            <li><a href="{{ route('admin.daily.food') }}"><i class="ti-arrow-right"></i> Daily Order List</a></li>
+                            <li><a href="{{ route('admin.order.food') }}"><i class="ti-arrow-right"></i> Food Order List</a></li>
                         </ul>
                     </li>
                 </ul>

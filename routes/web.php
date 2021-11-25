@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AdminRegistrationController;
+use App\Http\Controllers\Backend\FoodOrderListController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\TakeLunchController;
@@ -52,6 +53,16 @@ Route::middleware(['auth'])->group(function(){
          * Menu List
          */
         Route::resource('menuList',MenuListController::class);
+
+        /**
+        * Daily Food List
+        */
+        Route::get('daily/list', [FoodOrderListController::class, 'dailyFood'])->name('daily.food');
+
+        /**
+        * Monthly Food List
+        */
+        Route::get('order/list', [FoodOrderListController::class, 'orderFood'])->name('order.food');
 
     });
 
