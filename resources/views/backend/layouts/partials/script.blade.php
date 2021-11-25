@@ -53,7 +53,9 @@
 
     <script>
         $(document).ready(function() {
-        $('#dataTable3').DataTable();
+            $('#dataTable3').DataTable({
+                "pageLength": 50
+            });
         });
     </script>
 

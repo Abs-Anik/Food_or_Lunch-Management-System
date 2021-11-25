@@ -46,9 +46,25 @@
          <div class="col-12 mt-5">
             <div class="card">
                <div class="card-body">
-                  <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                     <h4 class="header-title mb-0">Food Order List</h4>
+                  <div class="mb-4">
+                     <h4 class="header-title mb-3">Food Order List</h4>
                      {{-- <a href="{{ route('admin.menuList.create') }}"><i class="fa fa-plus-circle"></i> Add New Menu</a> --}}
+                     <form>
+                        <div class="form-row">
+                          <div class="col-sm-3 col-12">
+                            <input type="text" class="form-control" placeholder="Enter User Enroll">
+                          </div>
+                          <div class="col-sm-3 col-12">
+                            <input type="date" class="form-control" placeholder="From Date">
+                          </div>
+                          <div class="col-sm-3 col-12">
+                            <input type="date" class="form-control" placeholder="To Date">
+                          </div>
+                          <div class="col-sm-3 col-12">
+                            <input type="submit" class="btn btn-outline-primary" value="Search">
+                          </div>
+                        </div>
+                    </form>
                   </div>
                   <div class="table-responsive">
                      <table class="table" id="dataTable3">
