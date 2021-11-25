@@ -33,7 +33,7 @@ $user = Auth::guard('web')->user();
                     @endif
 
                     <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-users" aria-hidden="true"></i><span>Food Menu
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fas fa-hamburger"></i><span>Food Menu
                             </span></a>
                         <ul class="collapse">
                             <li><a href="{{ route('admin.menuList.create') }}"><i class="ti-arrow-right"></i> Creat New Food Menu</a></li>
@@ -42,7 +42,7 @@ $user = Auth::guard('web')->user();
                     </li>
 
                     <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-users" aria-hidden="true"></i><span>Food Order List
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-cutlery" aria-hidden="true"></i><span>Food Order List
                             </span></a>
                         <ul class="collapse">
                             <li><a href="{{ route('admin.daily.food') }}"><i class="ti-arrow-right"></i> Daily Order List</a></li>

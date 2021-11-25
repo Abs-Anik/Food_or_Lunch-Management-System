@@ -2,6 +2,9 @@
 @section('title')
  Food Order List
 @endsection
+@section('custom_css')
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@endsection
 @section('main-content')
 <div class="main-content">
    <!-- header area start -->
@@ -55,13 +58,13 @@
                             <input type="text" class="form-control" placeholder="Enter User Enroll">
                           </div>
                           <div class="col-sm-3 col-12">
-                            <input type="date" class="form-control" placeholder="From Date">
+                            <input type="text" class="form-control" placeholder="From Date" id="depart">
                           </div>
                           <div class="col-sm-3 col-12">
-                            <input type="date" class="form-control" placeholder="To Date">
+                            <input type="text" class="form-control" placeholder="To Date" id="return">
                           </div>
                           <div class="col-sm-3 col-12">
-                            <input type="submit" class="btn btn-outline-primary" value="Search">
+                            <button type="submit" class="btn btn-outline-primary"><i class="fas fa-filter"></i></button>
                           </div>
                         </div>
                     </form>
@@ -99,4 +102,39 @@
       </div>
    </div>
 </div>
+@endsection
+@section('scripts')
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Javascript -->
+<script>
+    $(document).ready(function() {
+
+        var minDate = new Date();
+        $("#depart").datepicker({
+            showAnim: 'drop',
+            numberOfMonth: 1,
+            minDate: minDate,
+            dateFormat: 'yy-mm-dd',
+            onClose: function(selectedDate) {
+                $("#return").datepicker("option", "minDate", selectedDate);
+            }
+        });
+
+
+
+
+        $("#return").datepicker({
+            showAnim: 'drop',
+            numberOfMonth: 2,
+            minDate: minDate,
+            dateFormat: 'yy-mm-dd',
+            onClose: function(selectedDate) {
+                $("#depart").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+
+    });
+
+</script>
 @endsection
