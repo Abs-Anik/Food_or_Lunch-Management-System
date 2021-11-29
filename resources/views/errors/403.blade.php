@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>404 Error</title>
+    <title>403 Forbidden Error</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('backend.layouts.partials.style')
 </head>
@@ -22,8 +22,8 @@
     <div class="error-area ptb--100 text-center">
         <div class="container">
             <div class="error-content">
-                <h2>404</h2>
-                <p>Ooops! Something went wrong</p>
+                <h2>403</h2>
+                <p>Ooops! Forbidden Error. You don't have permission to access</p>
                 <a href="{{ route('welcome') }}">Back to Website</a>
             </div>
         </div>
