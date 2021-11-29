@@ -17,9 +17,7 @@ class RolePermissionSeeder extends Seeder
     {
 
         // Role::create(['name' => 'User']);
-        Role::create(['guard_name' => 'web', 'name' => 'Subscriber']);
         Role::create(['guard_name' => 'web', 'name' => 'Admin']);
-        Role::create(['guard_name' => 'web', 'name' => 'Editor']);
         $roleSuperAdmin = Role::create(['guard_name' => 'web', 'name' => 'Super Admin']);
 
         /**
@@ -71,15 +69,6 @@ class RolePermissionSeeder extends Seeder
                 ]
             ],
             [
-                'group_name' => 'publication',
-                'permissions' => [
-                    'publication.view',
-                    'publication.create',
-                    'publication.edit',
-                    'publication.delete',
-                ]
-            ],
-            [
                 'group_name' => 'setting',
                 'permissions' => [
                     'setting.view',
@@ -94,8 +83,6 @@ class RolePermissionSeeder extends Seeder
                     'dashboard.view',
                 ]
             ],
-
-
         ];
 
         for ($i = 0; $i < count($permissions); $i++) {

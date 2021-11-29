@@ -2867,3 +2867,16 @@ select.form-control:not([size]):not([multiple]) {
     width: 100% !important;
     padding: 2px;
 }
+
+.box-one{
+    padding: 40px;
+    text-align: center;
+}
+
+.box-two{
+    transition: 0.2s all;
+}
+
+.box-two:hover{
+    transform: scale(1.05, 1.05);
+}

@@ -25,8 +25,7 @@
                     <img class="avatar user-thumb" src="{{ asset('public/backend/assets/images/author/avatar.png')}}" alt="avatar">
                     <h4 class="user-name dropdown-toggle" data-toggle="dropdown" style="text-transform: capitalize">{{ Auth::user()->username }} <i class="fa fa-angle-down"></i></h4>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Message</a>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Profile Settings</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
@@ -46,9 +45,24 @@
         <!-- sales report area start -->
         <div class="sales-report-area mt-5 mb-5">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6 box-two">
                     <div class="single-report box-shadow mb-xs-30">
-                        <div class="s-report-inner pr--20 pt--30 mb-3">
+                        <div class="s-report-inner box-one pr--20 pt--30 mb-3">
+                            <h4>
+                                Today's Meal Number:
+                                @if (!empty($todaysMeal))
+                                {{ $todaysMeal }}
+                                @else
+                                  0
+                                @endif
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 box-two">
+                    <div class="single-report box-shadow mb-xs-30">
+                        <div class="s-report-inner box-one pr--20 pt--30 mb-3">
                             <h4>
                                 Total User:
                                 @if (!empty($totalUser))
@@ -62,7 +76,45 @@
                 </div>
             </div>
         </div>
-        <!-- sales report area end -->
+        <div class="card mt-5 table-responsive">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-5">
+                    <h4 class="header-title mb-0">Daily Lunch Record</h4>
+                </div>
+                <div id="barchart_material" style="width: 100%"></div>
+            </div>
+        </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+{{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --}}
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+  google.charts.load('current', {'packages':['bar']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Date', 'Meal Number'],
+
+        @php
+          foreach($currentMonthMealLists as $mealList) {
+              echo "['".$mealList->strDate."', ".$mealList->total."],";
+          }
+        @endphp
+    ]);
+
+    var options = {
+      bars: 'vertical'
+    };
+    var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+  }
+</script>
 @endsection

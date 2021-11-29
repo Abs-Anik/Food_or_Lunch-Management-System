@@ -63,6 +63,7 @@ Route::middleware(['auth'])->group(function(){
         * Monthly Food List
         */
         Route::get('order/list', [FoodOrderListController::class, 'orderFood'])->name('order.food');
+        Route::post('filter/list', [FoodOrderListController::class, 'filterFoodOrder'])->name('filterFoodOrder');
 
     });
 

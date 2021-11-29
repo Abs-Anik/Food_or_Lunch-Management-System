@@ -12,6 +12,9 @@ class UserDashboardController extends Controller
 {
     public function index()
     {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
         $date = Carbon::now();
         $todayDate =  $date->toDateString();
         $user_id = Auth::user()->id;

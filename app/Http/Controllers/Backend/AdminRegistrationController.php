@@ -28,6 +28,9 @@ class AdminRegistrationController extends Controller
      */
     public function index()
     {
+        if (is_null($this->user) || !$this->user->can('admin.view')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $admins = User::where('is_admin',1)->get();
         return view('backend.admin_registration.index', compact('admins'));
     }
@@ -39,6 +42,9 @@ class AdminRegistrationController extends Controller
      */
     public function create()
     {
+        if (is_null($this->user) || !$this->user->can('admin.create')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $roles = DB::table('roles')->get();
         return view('backend.admin_registration.create', compact('roles'));
     }
@@ -51,6 +57,9 @@ class AdminRegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        if (is_null($this->user) || !$this->user->can('admin.create')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
             $request->validate([
                 'first_name' => 'required|max:25',
                 'last_name' => 'nullable|max:25',
@@ -115,6 +124,9 @@ class AdminRegistrationController extends Controller
      */
     public function edit($id)
     {
+        if (is_null($this->user) || !$this->user->can('admin.edit')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $admin = User::find($id);
         $roles = DB::table('roles')->get();
         return view('backend.admin_registration.edit', compact('roles', 'admin'));
@@ -129,6 +141,9 @@ class AdminRegistrationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (is_null($this->user) || !$this->user->can('admin.edit')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $request->validate([
             'first_name' => 'required|max:25',
             'last_name' => 'nullable|max:25',

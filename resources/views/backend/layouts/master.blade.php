@@ -34,7 +34,6 @@
     </div>
     <!-- page container area end -->
     <!-- offset area start -->
-    @include('backend.layouts.partials.offsetarea')
     <!-- offset area end -->
     @include('backend.layouts.partials.script')
     @yield('scripts')

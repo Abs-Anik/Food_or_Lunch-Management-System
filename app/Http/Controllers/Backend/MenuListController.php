@@ -27,6 +27,9 @@ class MenuListController extends Controller
      */
     public function index()
     {
+        if (is_null($this->user) || !$this->user->can('setting.view')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $menuLists = MenuList::all();
         return view('backend.menu_list.index', compact('menuLists'));
     }
@@ -38,6 +41,9 @@ class MenuListController extends Controller
      */
     public function create()
     {
+        if (is_null($this->user) || !$this->user->can('setting.create')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         return view('backend.menu_list.create');
     }
 
@@ -49,6 +55,9 @@ class MenuListController extends Controller
      */
     public function store(Request $request)
     {
+        if (is_null($this->user) || !$this->user->can('setting.create')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $request->validate([
             'itemName' => 'required',
             'itemPrice' => 'required|integer',
@@ -87,6 +96,9 @@ class MenuListController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (is_null($this->user) || !$this->user->can('setting.edit')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $request->validate([
             'itemName' => 'required',
             'itemPrice' => 'required|integer',
@@ -127,6 +139,9 @@ class MenuListController extends Controller
      */
     public function destroy($id)
     {
+        if (is_null($this->user) || !$this->user->can('setting.delete')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $menuList = MenuList::where('id', $id);
 
         $menuList->delete();

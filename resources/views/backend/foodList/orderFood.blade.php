@@ -52,7 +52,7 @@
                   <div class="mb-4">
                      <h4 class="header-title mb-3">Food Order List</h4>
                      {{-- <a href="{{ route('admin.menuList.create') }}"><i class="fa fa-plus-circle"></i> Add New Menu</a> --}}
-                     <form>
+                     <form action="{{ route('admin.filterFoodOrder') }}" method="POST">
                          @csrf
                         <div class="form-row">
                           <div class="col-sm-3 col-12">
@@ -113,13 +113,13 @@
 
         var minDate = new Date();
         $("#depart").datepicker({
-            showAnim: 'drop',
-            numberOfMonth: 1,
-            minDate: minDate,
+            // showAnim: 'drop',
+            // numberOfMonth: 1,
+            // minDate: minDate,
             dateFormat: 'yy-mm-dd',
-            onClose: function(selectedDate) {
-                $("#return").datepicker("option", "minDate", selectedDate);
-            }
+            // onClose: function(selectedDate) {
+            //     $("#return").datepicker("option", "minDate", selectedDate);
+            // }
         });
 
 

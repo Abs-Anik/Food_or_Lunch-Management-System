@@ -16,6 +16,9 @@ class TakeLunchController extends Controller
 {
     public function create()
     {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
         $daily_lunches = MenuList::all();
         $firstName = Auth::user()->first_name;
         $lastName = Auth::user()->last_name;
@@ -30,6 +33,9 @@ class TakeLunchController extends Controller
 
     public function index()
     {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
         $user_id = Auth::user()->id;
         $meals = MealList::select('*')
             ->where('meal_lists.user_id', $user_id)
@@ -41,6 +47,9 @@ class TakeLunchController extends Controller
 
     public function store(Request $request)
     {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
         $meal_no = (int)$request->meal_no;
         $strDate = $request->strDate;
         $dayName = $request->dayName;
@@ -127,6 +136,9 @@ class TakeLunchController extends Controller
 
     public function destroy($id)
     {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
         $date = Carbon::now();
         $todayDate =  $date->toDateString();
 
@@ -159,7 +171,7 @@ class TakeLunchController extends Controller
             }
         }else{
             $notification = array(
-                'Message' => 'Only preset date meal can be deleted!!',
+                'Message' => 'Only present date meal can be deleted!!',
                 'alert-type' => 'error'
             );
             return redirect()->route('user.daily.lunch.index')->with($notification);

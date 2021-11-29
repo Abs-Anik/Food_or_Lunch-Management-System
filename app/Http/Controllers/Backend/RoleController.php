@@ -6,10 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Spatie\Permission\Contracts\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +28,9 @@ class RoleController extends Controller
 
     public function index(Role $role)
     {
+        if (is_null($this->user) || !$this->user->can('role.view')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $roles = DB::table('roles')->select('id', 'name')->get();
 
         return view('backend.role_permission.index', compact('roles'));
@@ -32,6 +45,9 @@ class RoleController extends Controller
      */
     public function create()
     {
+        if (is_null($this->user) || !$this->user->can('role.create')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $permissions_group = User::getAdminPermissionGroups();
         $all_permissions = DB::table('permissions')->select('id', 'name')->get();
         return view('backend.role_permission.create', compact('permissions_group', 'all_permissions'));
@@ -45,6 +61,9 @@ class RoleController extends Controller
      */
     public function store(Request $request, Role $roleModel)
     {
+        if (is_null($this->user) || !$this->user->can('role.create')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $request->validate([
             'name'  => 'required|max:100|unique:roles'
         ]);
@@ -84,6 +103,9 @@ class RoleController extends Controller
      */
     public function show($id, Role $roleModel)
     {
+        if (is_null($this->user) || !$this->user->can('role.view')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $role = $roleModel::findById($id, 'web');
         $permissions_group = User::getAdminPermissionGroups();
         $all_permissions = DB::table('permissions')->select('id', 'name')->get();
@@ -98,6 +120,9 @@ class RoleController extends Controller
      */
     public function edit($id, Role $role)
     {
+        if (is_null($this->user) || !$this->user->can('role.edit')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $role = $role::findById($id, 'web');
         $permissions_group = User::getAdminPermissionGroups();
         $all_permissions = DB::table('permissions')->select('id', 'name')->get();
@@ -113,6 +138,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id, Role $roleModel)
     {
+        if (is_null($this->user) || !$this->user->can('role.edit')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $role = $roleModel::findById($id, 'web');
         if (is_null($role)) {
             $notification = array(
@@ -158,6 +186,9 @@ class RoleController extends Controller
      */
     public function destroy($id, Role $roleModel)
     {
+        if (is_null($this->user) || !$this->user->can('role.delete')) {
+            return abort(403, 'You are not allowed to access this page !');
+        }
         $role = $roleModel::findById($id, 'web');
         if (is_null($role)) {
             $notification = array(
