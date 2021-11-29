@@ -16,7 +16,7 @@ class TakeLunchController extends Controller
 {
     public function create()
     {
-        if (!auth()->user()->is_admin) {
+        if (!auth()->user()) {
             abort(403, 'Unauthorized action.');
         }
         $daily_lunches = MenuList::all();
@@ -33,7 +33,7 @@ class TakeLunchController extends Controller
 
     public function index()
     {
-        if (!auth()->user()->is_admin) {
+        if (!auth()->user()) {
             abort(403, 'Unauthorized action.');
         }
         $user_id = Auth::user()->id;
@@ -47,7 +47,7 @@ class TakeLunchController extends Controller
 
     public function store(Request $request)
     {
-        if (!auth()->user()->is_admin) {
+        if (!auth()->user()) {
             abort(403, 'Unauthorized action.');
         }
         $meal_no = (int)$request->meal_no;
@@ -136,7 +136,7 @@ class TakeLunchController extends Controller
 
     public function destroy($id)
     {
-        if (!auth()->user()->is_admin) {
+        if (!auth()->user()) {
             abort(403, 'Unauthorized action.');
         }
         $date = Carbon::now();

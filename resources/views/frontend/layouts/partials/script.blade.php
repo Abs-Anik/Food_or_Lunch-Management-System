@@ -40,7 +40,10 @@
     <script src="{{ asset('public/frontend/assets/build/js/custom.min.js')}}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
+    <script src="{{ asset('public/backend/assets/js/dropify/js/dropify.min.js') }}"></script>
+    <script>
+        $(".dropify").dropify();
+    </script>
     <script>
         @if (Session::has('Message'))
             var type = "{{ Session::get('alert-type', 'info') }}";

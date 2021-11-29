@@ -27,3 +27,5 @@
 <link href="{{ asset('public/frontend/assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{ asset('public/frontend/assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{ asset('public/frontend/assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+<!-- Dropify CSS -->
+<link rel="stylesheet" type="text/css" href="{{ asset('public/backend/assets/js/dropify/css/dropify.min.css') }}">

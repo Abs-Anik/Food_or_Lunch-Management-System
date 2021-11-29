@@ -4,14 +4,13 @@
 @endsection
 @section('login-registration')
 <div class="container">
-    <div class="row">
+    <div class="row pb-5">
         <div class="col-12 mt-5">
-                    <div class="login-box ptb--100">
+                    <div class="login-box">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="login-form-head">
-                                <h4>Sign up</h4>
-                                <p>Hello there, Sign up and Join with Us</p>
+                                <img src="{{ asset('public/frontend/assets/images/8.png') }}" alt="" width="50px" height="50px">
                             </div>
                             <div class="login-form-body">
                                 <div class="row">

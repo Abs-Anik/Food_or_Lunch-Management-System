@@ -51,8 +51,22 @@ class LoginController extends Controller
         if(auth()->attempt(array('username' => $input['username'], 'password' => $input['password'])))
         {
             if (auth()->user()->is_admin == 1) {
+                if($request->remember_me === null){
+                    setcookie('login_username', $request->username,100);
+                    setcookie('login_password', $request->password,100);
+                }else{
+                    setcookie('login_username', $request->username, time()+60*60*24*100);
+                    setcookie('login_password', $request->password, time()+60*60*24*100);
+                }
                 return redirect()->route('admin.dashboard.index');
             }else{
+                if($request->remember_me === null){
+                    setcookie('login_username', $request->username,100);
+                    setcookie('login_password', $request->password,100);
+                }else{
+                    setcookie('login_username', $request->username, time()+60*60*24*100);
+                    setcookie('login_password', $request->password, time()+60*60*24*100);
+                }
                 return redirect()->route('user.dashboard.index');
             }
         }else{

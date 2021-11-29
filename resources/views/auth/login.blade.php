@@ -1,20 +1,31 @@
+@php
+    if(isset($_COOKIE['login_username']) && isset($_COOKIE['login_password']))
+    {
+        $login_username = $_COOKIE['login_username'];
+        $login_password = $_COOKIE['login_password'];
+        $is_remember = "checked='checked'";
+    }else{
+        $login_username = '';
+        $login_password = '';
+        $is_remember = '';
+    }
+@endphp
 @extends('auth.layouts.master_login_register')
 @section('login_registration')
     Login
 @endsection
 @section('login-registration')
 <div class="container">
-    <div class="login-box ptb--100">
+    <div class="login-box">
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="login-form-head">
-                <h4>Sign In</h4>
-                <p>Hello there, Sign in and start managing Lunch Management System</p>
+                <img src="{{ asset('public/frontend/assets/images/8.png') }}" alt="" width="50px" height="50px">
             </div>
             <div class="login-form-body">
                 <div class="form-group">
                     <label for="username">User Name</label>
-                    <input type="text" id="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                    <input type="text" id="username" class="form-control @error('username') is-invalid @enderror" name="username" required autocomplete="username" autofocus value="{{ $login_username }}">
                     @error('username')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -23,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" value="{{ $login_password }}">
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -32,10 +43,12 @@
                 </div>
                 <div class="row mb-4 rmber-area">
                     <div class="col-6">
-                        <div class="custom-control custom-checkbox mr-sm-2">
-                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                            <label class="custom-control-label" for="customControlAutosizing">Remember Me</label>
-                        </div>
+                        <div class="form-group">
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customControlInline" name="remember_me" {{ $is_remember }}>
+								<label class="custom-control-label" for="customControlInline">Remember me</label>
+							</div>
+						</div>
                     </div>
                     <div class="col-6 text-right">
                         <a href="{{ route('password.request') }}">Forgot Password?</a>

@@ -63,7 +63,7 @@ class AdminRegistrationController extends Controller
             $request->validate([
                 'first_name' => 'required|max:25',
                 'last_name' => 'nullable|max:25',
-                'username' => 'required|max:25',
+                'username' => 'required|max:25|unique:users',
                 'email' => 'required|string|email|max:255|unique:users',
                 'enrollment' => 'required|string|unique:users',
                 'designation' => 'required|string',
@@ -147,7 +147,7 @@ class AdminRegistrationController extends Controller
         $request->validate([
             'first_name' => 'required|max:25',
             'last_name' => 'nullable|max:25',
-            'username' => 'required|max:25',
+            'username' => 'required|max:25|unique:users,username,'.$id,
             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
             'enrollment' => 'required|string|unique:users,enrollment,'.$id,
             'designation' => 'required|string',

@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\TakeLunchController;
 use App\Http\Controllers\Backend\MenuListController;
+use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Frontend\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +67,13 @@ Route::middleware(['auth'])->group(function(){
         Route::get('order/list', [FoodOrderListController::class, 'orderFood'])->name('order.food');
         Route::post('filter/list', [FoodOrderListController::class, 'filterFoodOrder'])->name('filterFoodOrder');
 
+        Route::get('/admin/profile', [ProfileController::class, 'show'])->name('profile.view');
+        Route::get('/admin/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('/admin/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+
+        Route::get('/admin/password/change',[ProfileController::class, 'userPasswordChangeView'])->name('password.change');
+        Route::post('/admin/password/change',[ProfileController::class, 'userPasswordChangeUpdate'])->name('password.update');
+
     });
 
     /**
@@ -80,6 +89,13 @@ Route::middleware(['auth'])->group(function(){
     Route::get('user/take/lunch', [TakeLunchController::class, 'create'])->name('user.take.lunch.create');
     Route::post('user/take/lunch', [TakeLunchController::class, 'store'])->name('user.take.lunch.store');
     Route::post('user/take/lunch/cancel/{id}', [TakeLunchController::class, 'destroy'])->name('user.take.lunch.destroy');
+
+    Route::get('/user/profile', [UserProfileController::class, 'show'])->name('user.profile.view');
+    Route::get('/user/profile/edit', [UserProfileController::class, 'edit'])->name('user.profile.edit');
+    Route::post('/user/profile/update/{id}', [UserProfileController::class, 'update'])->name('user.profile.update');
+
+    Route::get('/user/password/change',[UserProfileController::class, 'userPasswordChangeView'])->name('user.password.change');
+    Route::post('/user/password/change',[UserProfileController::class, 'userPasswordChangeUpdate'])->name('user.password.update');
 
 });
 
