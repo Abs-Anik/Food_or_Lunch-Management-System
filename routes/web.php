@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AdminRegistrationController;
+use App\Http\Controllers\Backend\DesignationController;
 use App\Http\Controllers\Backend\FoodEntryController;
 use App\Http\Controllers\Backend\FoodOrderListController;
 use App\Http\Controllers\Backend\RoleController;
@@ -51,6 +52,10 @@ Route::middleware(['auth'])->group(function(){
          */
         Route::resource('rolePermission',RoleController::class);
 
+        /**
+         * Designation
+         */
+        Route::resource('designation',DesignationController::class);
 
         /**
          * Menu List

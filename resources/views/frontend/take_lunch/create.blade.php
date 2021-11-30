@@ -36,7 +36,11 @@
                     <div class="item form-group">
                         <label for="designation" class="col-form-label col-md-3 col-sm-3 label-align">Designation <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input id="designation" class="form-control" type="text" name="designation" value="{{ $designation }}" disabled>
+                            @foreach ($designations as $designation)
+                                @if ($designation_id == $designation->id)
+                                <input id="designation" class="form-control" type="text" name="designation" value="{{ $designation->designation }}" disabled>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="item form-group">
@@ -59,6 +63,11 @@
                             <input id="meal_no" class="form-control @error('meal_no') is-invalid @enderror" type="number" name="meal_no" min="1" required>
                             <input id="strDate" class="form-control" type="hidden" name="strDate" value="{{ $todayDate }}">
                             <input id="dayName" class="form-control" type="hidden" name="dayName" value="{{ $dayName }}">
+                            @foreach ($designations as $designation)
+                                @if ($designation_id == $designation->id)
+                                <input id="designation_id" class="form-control" type="hidden" name="designation_id" value="{{ $designation->id }}">
+                                @endif
+                            @endforeach
                             @error('meal_no')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

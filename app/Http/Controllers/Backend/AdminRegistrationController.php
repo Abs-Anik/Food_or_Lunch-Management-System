@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Designation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,8 @@ class AdminRegistrationController extends Controller
             return abort(403, 'You are not allowed to access this page !');
         }
         $roles = DB::table('roles')->get();
-        return view('backend.admin_registration.create', compact('roles'));
+        $designations = Designation::all();
+        return view('backend.admin_registration.create', compact('roles', 'designations'));
     }
 
     /**
@@ -66,7 +68,7 @@ class AdminRegistrationController extends Controller
                 'username' => 'required|max:25|unique:users',
                 'email' => 'required|string|email|max:255|unique:users',
                 'enrollment' => 'required|string|unique:users',
-                'designation' => 'required|string',
+                'designation_id' => 'required',
                 'password' => 'nullable|string|max:8|confirmed',
             ]);
 
@@ -78,7 +80,7 @@ class AdminRegistrationController extends Controller
                 $admin->username = $request->username;
                 $admin->email = $request->email;
                 $admin->enrollment = $request->enrollment;
-                $admin->designation = $request->designation;
+                $admin->designation_id = $request->designation_id;
                 $admin->is_admin = 1;
                 $admin->password = Hash::make($request->password);
 
@@ -129,7 +131,8 @@ class AdminRegistrationController extends Controller
         }
         $admin = User::find($id);
         $roles = DB::table('roles')->get();
-        return view('backend.admin_registration.edit', compact('roles', 'admin'));
+        $designations = Designation::all();
+        return view('backend.admin_registration.edit', compact('roles', 'admin', 'designations'));
     }
 
     /**
@@ -150,7 +153,7 @@ class AdminRegistrationController extends Controller
             'username' => 'required|max:25|unique:users,username,'.$id,
             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
             'enrollment' => 'required|string|unique:users,enrollment,'.$id,
-            'designation' => 'required|string',
+            'designation_id' => 'required',
             'password' => 'nullable|string|max:8|confirmed',
         ]);
 
@@ -169,7 +172,7 @@ class AdminRegistrationController extends Controller
             $admin->username = $request->username;
             $admin->email = $request->email;
             $admin->enrollment = $request->enrollment;
-            $admin->designation = $request->designation;
+            $admin->designation_id = $request->designation_id;
             $admin->is_admin = 1;
             $admin->password = Hash::make($request->password);
             $admin->update();

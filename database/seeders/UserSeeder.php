@@ -15,14 +15,14 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = new User();
-        $admin->first_name = "Md. Abu Bakkar";
-        $admin->last_name = "Siddik";
-        $admin->username = "anik";
+        $admin->first_name = "Super";
+        $admin->last_name = "Admin";
+        $admin->username = "superadmin";
         $admin->phone = "017XXXXXXXX";
         $admin->image = "image.jpg";
-        $admin->email = "anik@gmail.com";
-        $admin->enrollment = "517890";
-        $admin->designation = "Assistant Officer, IT";
+        $admin->email = "superadmin@gmail.com";
+        $admin->enrollment = "0007";
+        $admin->designation_id = 1;
         $admin->password = Hash::make('123456');
         $admin->is_admin = 1;
         $admin->save();
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         $admin->image = "image.jpg";
         $admin->email = "asif@gmail.com";
         $admin->enrollment = "517891";
-        $admin->designation = "Assistant Officer, IT";
+        $admin->designation_id = 2;
         $admin->password = Hash::make('123456');
         $admin->is_admin = 0;
         $admin->save();

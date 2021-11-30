@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('enrollment')->unique();
-            $table->string('designation');
+            $table->unsignedBigInteger('designation_id');
             $table->string('phone')->nullable();
             $table->string('image')->nullable();
             $table->string('password');

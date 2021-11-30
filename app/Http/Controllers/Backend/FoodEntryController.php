@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Designation;
 use App\Models\MealList;
 use App\Models\MenuList;
 use App\Models\User;
@@ -39,9 +40,12 @@ class FoodEntryController extends Controller
         $todayDate =  $date->toDateString();
         $dayName = date('l', strtotime($date));
         $id = $request->id;
+        $designation_id = $request->designation_id;
         $meal_no = (int)$request->meal_no;
-        $priceData = MenuList::select('menu_lists.itemPrice')->where('menu_lists.itemDay', $dayName)->first();
-        $priceOne = (int)$priceData->itemPrice;
+        // $priceData = MenuList::select('menu_lists.itemPrice')->where('menu_lists.itemDay', $dayName)->first();
+        // $priceOne = (int)$priceData->itemPrice;
+        $priceData = Designation::select('designations.food_price')->where('designations.id', $designation_id)->first();
+        $priceOne = (int)$priceData->food_price;
         $price = $priceOne * $meal_no;
         $isExists  = MealList::where('meal_lists.user_id', $id)->where('meal_lists.strDate', $todayDate)->first();
         if(!empty($isExists)){

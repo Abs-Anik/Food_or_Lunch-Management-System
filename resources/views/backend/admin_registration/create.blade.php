@@ -113,9 +113,14 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                <label for="designation" class="form-control-label">Designation: </label>
-                                <input id="designation" class="form-control @error('designation') is-invalid @enderror" type="designation" name="designation" value="{{ old('designation') }}" placeholder="Enter User designation" data-parsley-error-message="Please give user designation" required autocomplete="designation" autofocus>
-                                @error('designation')
+                                <label for="designation_id" class="form-control-label">Designation: </label>
+                                <select name="designation_id" id="designation_id" class="form-control @error('designation_id') is-invalid @enderror w-100 select-input-field">
+                                    <option value="">-- Select Designation --</option>
+                                    @foreach ($designations as $designation)
+                                    <option value="{{ $designation->id }}">{{ $designation->designation }}</option>
+                                    @endforeach
+                                </select>
+                                @error('designation_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 </div>
@@ -141,7 +146,7 @@
                                 <div class="form-group">
                                     <label class="control-label" for="roles">Assign Roles <span class="optional">(optional)</span></label>
                                     <br>
-                                    <select class="roles_select form-control custom-select " id="roles" name="roles[]" multiple>
+                                    <select class="form-control roll_select" id="roles" name="roles[]" multiple>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->name }}">{{ $role->name }}</option>
                                         @endforeach
@@ -164,7 +169,7 @@
 @endsection
 @section('scripts')
     <script>
-        $(".roles_select").select2({
+        $(".roll_select").select2({
             placeholder: "Select Roles to Assign for Access Pages"
         });
     </script>

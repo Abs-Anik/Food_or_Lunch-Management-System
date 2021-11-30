@@ -84,9 +84,16 @@
                                 <b>User Enrollment</b> <a class="float-right">Not Found</a>
                             </li>
                             @endif
-                            @if (!empty($user->designation))
+                            @if (!empty($user->designation_id))
                             <li class="list-group-item">
-                                <b>User Designation</b> <a class="float-right">{{ $user->designation }}</a>
+                                <b>User Designation</b>
+                                @foreach ($designations as $designation)
+                                <a class="float-right">
+                                    @if ($designation->id == $user->designation_id)
+                                        {{ $designation->designation }}
+                                    @endif
+                                </a>
+                                @endforeach
                             </li>
                             @else
                             <li class="list-group-item">

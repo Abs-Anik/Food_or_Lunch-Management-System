@@ -69,9 +69,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="designation">Designation</label>
-                                    <input type="designation" id="designation" class="form-control @error('designation') is-invalid @enderror" name="designation" value="{{ old('designation') }}" required autocomplete="designation">
-                                    @error('designation')
+                                    <label for="designation_id">Designation</label>
+                                    <select name="designation_id" id="designation_id" class="form-control @error('designation_id') is-invalid @enderror w-100 select-input-field">
+                                        <option value="">-- Select Designation --</option>
+                                        @foreach ($designations as $designation)
+                                        <option value="{{ $designation->id }}">{{ $designation->designation }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('designation_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

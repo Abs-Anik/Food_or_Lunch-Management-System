@@ -27,7 +27,18 @@ $route = Route::current()->getName();
                     </li>
                     @endif
 
-                    @if ($user->can('user.view'))
+                    @if ($user->can('admin.view'))
+                    <li class="{{(($route == 'admin.designation.create') ? "active" :(($route == 'admin.designation.index') ? "active" : ""))}}">
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="far fa-address-card"></i><span>Designation
+                            </span></a>
+                        <ul class="collapse">
+                            <li class="{{ $route == 'admin.designation.create' ? 'active' : '' }}"><a href="{{ route('admin.designation.create') }}"><i class="ti-arrow-right"></i> Creat New Designation</a></li>
+                            <li class="{{ $route == 'admin.designation.index' ? 'active' : '' }}"><a href="{{ route('admin.designation.index') }}"><i class="ti-arrow-right"></i> Designation List</a></li>
+                        </ul>
+                    </li>
+                    @endif
+
+                    @if ($user->can('admin.view'))
                     <li class="{{(($route == 'admin.registration.create') ? "active" :(($route == 'admin.registration.index') ? "active" :(($route == 'admin.rolePermission.create') ? "active" :(($route == 'admin.rolePermission.index') ? "active" : ""))))}}">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-users" aria-hidden="true"></i><span>User Management
                             </span></a>

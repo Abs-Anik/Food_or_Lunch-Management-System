@@ -62,7 +62,6 @@
                                             <th scope="col">SL</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">Image</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                         </thead>
@@ -72,7 +71,6 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td><span style="text-transform: capitalize">{{ $admin->username }}</span></td>
                                                     <td>{{ $admin->email }}</td>
-                                                    <td>image</td>
                                                     <td>
                                                      <a class="btn btn-xs-custome btn-success edit_customer_group_button" href="{{ route('admin.registration.edit', $admin->id) }}"><i class="fa fa-edit"></i> Edit</a>
                                                 </td>

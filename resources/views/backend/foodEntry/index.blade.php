@@ -76,6 +76,7 @@ Food Entry
                                         <td>
                                             <input type="number" name="meal_no" min="1" class="form-control" placeholder="Enter Meal Number" required>
                                             <input type="hidden" name="id" class="form-control" value="{{ $user->id }}">
+                                            <input type="hidden" name="designation_id" class="form-control" value="{{ $user->designation_id }}">
                                         </td>
                                         <td><button type="submit" class="btn btn-primary">Entry</button></td>
                                     </form>

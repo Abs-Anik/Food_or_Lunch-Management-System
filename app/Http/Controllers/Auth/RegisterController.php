@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Designation;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -55,7 +56,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'enrollment' => ['required', 'string', 'max:255', 'unique:users'],
-            'designation' => ['required', 'string', 'max:255'],
+            'designation_id' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -74,8 +75,14 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'enrollment' => $data['enrollment'],
-            'designation' => $data['designation'],
+            'designation_id' => $data['designation_id'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        $designations = Designation::all();
+        return view('auth.register', compact('designations'));
     }
 }

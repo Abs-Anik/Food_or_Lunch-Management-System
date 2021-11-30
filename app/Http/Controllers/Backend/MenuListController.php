@@ -142,7 +142,7 @@ class MenuListController extends Controller
         if (is_null($this->user) || !$this->user->can('setting.delete')) {
             return abort(403, 'You are not allowed to access this page !');
         }
-        $menuList = MenuList::where('id', $id);
+        $menuList = MenuList::where('id', $id)->first();
 
         $menuList->delete();
 

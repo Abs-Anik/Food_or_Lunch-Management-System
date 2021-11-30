@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Designation;
 use App\Models\MealList;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class FoodOrderListController extends Controller
             return abort(403, 'You are not allowed to access this page !');
         }
         $dailyFoodLists = MealList::join('users', 'meal_lists.user_id', 'users.id')
-        ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation', 'users.phone')
+        ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation_id', 'users.phone')
         ->whereDate('meal_lists.created_at', Carbon::today())
         ->get();
         return view('backend.foodList.dailyFood', compact('dailyFoodLists'));
@@ -39,7 +40,7 @@ class FoodOrderListController extends Controller
             return abort(403, 'You are not allowed to access this page !');
         }
         $orderFoodLists = MealList::join('users', 'meal_lists.user_id', 'users.id')
-        ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation', 'users.phone')
+        ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation_id', 'users.phone')
         ->whereMonth('meal_lists.created_at', Carbon::now()->month)
         ->orderBy('created_at', 'asc')
         ->get();
@@ -56,7 +57,7 @@ class FoodOrderListController extends Controller
 
         if(!empty($enrollment) && empty($strDate) && empty($endDate)){
             $orderFoodLists = MealList::join('users', 'meal_lists.user_id', 'users.id')
-            ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation', 'users.phone')
+            ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation_id', 'users.phone')
             ->where('users.enrollment', $enrollment)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -64,7 +65,7 @@ class FoodOrderListController extends Controller
         }
         elseif(empty($enrollment) && !empty($strDate) && !empty($endDate)){
             $orderFoodLists = MealList::join('users', 'meal_lists.user_id', 'users.id')
-            ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation', 'users.phone')
+            ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation_id', 'users.phone')
             ->where('meal_lists.strDate', '>=', $strDate)
             ->where('meal_lists.strDate', '<=', $endDate)
             ->orderBy('created_at', 'desc')
@@ -73,7 +74,7 @@ class FoodOrderListController extends Controller
         }
         elseif(!empty($enrollment) && !empty($strDate) && !empty($endDate)){
             $orderFoodLists = MealList::join('users', 'meal_lists.user_id', 'users.id')
-            ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation', 'users.phone')
+            ->select('meal_lists.*', 'users.first_name', 'users.last_name', 'users.username', 'users.email', 'users.enrollment', 'users.designation_id', 'users.phone')
             ->where('users.enrollment', $enrollment)
             ->where('meal_lists.strDate', '>=', $strDate)
             ->where('meal_lists.strDate', '<=', $endDate)

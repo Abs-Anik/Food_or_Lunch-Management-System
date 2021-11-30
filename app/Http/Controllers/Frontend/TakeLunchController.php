@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Designation;
 use App\Models\MealList;
 use App\Models\MenuList;
 use Carbon\Carbon;
@@ -24,11 +25,12 @@ class TakeLunchController extends Controller
         $lastName = Auth::user()->last_name;
         $name = $firstName. ' '.$lastName;
         $enrollment = Auth::user()->enrollment;
-        $designation = Auth::user()->designation;
+        $designation_id = Auth::user()->designation_id;
         $date = Carbon::now();
         $todayDate =  $date->toDateString();
         $dayName = date('l', strtotime($date));
-        return view('frontend.take_lunch.create', compact('daily_lunches', 'name', 'enrollment', 'designation', 'todayDate','dayName'));
+        $designations = Designation::all();
+        return view('frontend.take_lunch.create', compact('daily_lunches', 'name', 'enrollment', 'designation_id', 'todayDate','dayName', 'designations'));
     }
 
     public function index()
@@ -56,12 +58,14 @@ class TakeLunchController extends Controller
         $meal_no = (int)$request->meal_no;
         $strDate = $request->strDate;
         $dayName = $request->dayName;
+        $designation_id = $request->designation_id;
         $user_id = Auth::user()->id;
-
-        $priceData = MenuList::select('menu_lists.itemPrice')->where('menu_lists.itemDay', $dayName)->first();
+        // $priceData = MenuList::select('menu_lists.itemPrice')->where('menu_lists.itemDay', $dayName)->first();
+        $priceData = Designation::select('designations.food_price')->where('designations.id', $designation_id)->first();
         if(!empty($priceData))
         {
-            $priceOne = (int)$priceData->itemPrice;
+            // $priceOne = (int)$priceData->itemPrice;
+            $priceOne = (int)$priceData->food_price;
             $price = $priceOne * $meal_no;
 
         }else{

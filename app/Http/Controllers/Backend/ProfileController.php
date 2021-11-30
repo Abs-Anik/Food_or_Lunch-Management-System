@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Designation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,8 @@ class ProfileController extends Controller
         }
         $userID = Auth::user()->id;
         $user = User::where('id',$userID)->first();
-        return view('backend.profile.profile', compact('user'));
+        $designations = Designation::all();
+        return view('backend.profile.profile', compact('user', 'designations'));
     }
 
     /**
@@ -45,7 +47,8 @@ class ProfileController extends Controller
 
         $userID = Auth::user()->id;
         $user = User::where('id',$userID)->first();
-        return view('backend.profile.edit', compact('user'));
+        $designations = Designation::all();
+        return view('backend.profile.edit', compact('user', 'designations'));
     }
 
         /**
@@ -67,7 +70,7 @@ class ProfileController extends Controller
             'username' => 'required|max:25|unique:users,username,'.$id,
             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
             'enrollment' => 'required|string|unique:users,enrollment,'.$id,
-            'designation' => 'required|string',
+            'designation_id' => 'required',
             'phone' => 'nullable|string',
             'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -79,7 +82,7 @@ class ProfileController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->enrollment = $request->enrollment;
-        $user->designation = $request->designation;
+        $user->designation_id = $request->designation_id;
         $user->phone = $request->phone;
         if($request->image)
         {

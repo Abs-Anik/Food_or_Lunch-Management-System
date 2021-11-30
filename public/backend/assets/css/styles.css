@@ -2849,15 +2849,7 @@ table.dataTable thead td {
     font-size: 12px !important;
     line-height: 1.5 !important;
 }
-select.form-control:not([size]):not([multiple]) {
-    height: calc(2.25rem + 2px);
-    width: 70px;
-}
 
-.custom_select{
-    width: 100% !important;
-    padding: 2px 0px !important;
-}
 
 .box-shadow{
     border-radius: 10px;
@@ -2879,4 +2871,18 @@ select.form-control:not([size]):not([multiple]) {
 
 .box-two:hover{
     transform: scale(1.05, 1.05);
+}
+
+.select-input-field {
+    height: calc(2.25rem + 8px) !important;
+}
+
+.select-input-field-two {
+    height: calc(2.25rem + 8px) !important;
+}
+.form-group > .select2-container {
+    width: 100% !important;
+}
+div.dataTables_wrapper div.dataTables_length select {
+    width: 70px !important;
 }
