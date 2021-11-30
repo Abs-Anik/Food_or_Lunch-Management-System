@@ -21,6 +21,12 @@ $route = Route::current()->getName();
                     </li>
                     @endif
 
+                    @if ($user->can('setting.view'))
+                    <li class="{{ $route == 'admin.foodEntry' ? 'active' : '' }}">
+                        <a href="{{ route('admin.foodEntry') }}" aria-expanded="true"><i class="fa fa-plus-circle"></i><span>Food Entry</span></a>
+                    </li>
+                    @endif
+
                     @if ($user->can('user.view'))
                     <li class="{{(($route == 'admin.registration.create') ? "active" :(($route == 'admin.registration.index') ? "active" :(($route == 'admin.rolePermission.create') ? "active" :(($route == 'admin.rolePermission.index') ? "active" : ""))))}}">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-users" aria-hidden="true"></i><span>User Management

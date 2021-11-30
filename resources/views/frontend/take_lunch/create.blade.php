@@ -56,7 +56,7 @@
                     <div class="item form-group">
                         <label for="meal_no" class="col-form-label col-md-3 col-sm-3 label-align">Number of meal: <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input id="meal_no" class="form-control @error('meal_no') is-invalid @enderror" type="text" name="meal_no">
+                            <input id="meal_no" class="form-control @error('meal_no') is-invalid @enderror" type="number" name="meal_no" min="1" required>
                             <input id="strDate" class="form-control" type="hidden" name="strDate" value="{{ $todayDate }}">
                             <input id="dayName" class="form-control" type="hidden" name="dayName" value="{{ $dayName }}">
                             @error('meal_no')

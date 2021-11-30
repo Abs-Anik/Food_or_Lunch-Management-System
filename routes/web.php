@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AdminRegistrationController;
+use App\Http\Controllers\Backend\FoodEntryController;
 use App\Http\Controllers\Backend\FoodOrderListController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Frontend\UserDashboardController;
@@ -73,6 +74,9 @@ Route::middleware(['auth'])->group(function(){
 
         Route::get('/admin/password/change',[ProfileController::class, 'userPasswordChangeView'])->name('password.change');
         Route::post('/admin/password/change',[ProfileController::class, 'userPasswordChangeUpdate'])->name('password.update');
+
+        Route::get('/food/entry', [FoodEntryController::class, 'foodEntry'])->name('foodEntry');
+        Route::post('/food/entry', [FoodEntryController::class, 'foodEntryStore'])->name('foodEntryStore');
 
     });
 

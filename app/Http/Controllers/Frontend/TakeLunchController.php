@@ -50,6 +50,9 @@ class TakeLunchController extends Controller
         if (!auth()->user()) {
             abort(403, 'Unauthorized action.');
         }
+        $request->validate([
+            'meal_no' => 'required|numeric|gt:0'
+        ]);
         $meal_no = (int)$request->meal_no;
         $strDate = $request->strDate;
         $dayName = $request->dayName;
@@ -147,7 +150,7 @@ class TakeLunchController extends Controller
 
         $cancelTime = new DateTime('now', new DateTimeZone('Asia/Dhaka'));
         $cancelHour =  $cancelTime->format('H');
-        $lastCancelTime = 14;
+        $lastCancelTime = 10;
 
         if($todayDate == $mealEntryDate)
         {
