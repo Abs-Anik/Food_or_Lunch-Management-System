@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\AdminRegistrationController;
 use App\Http\Controllers\Backend\DesignationController;
 use App\Http\Controllers\Backend\FoodEntryController;
 use App\Http\Controllers\Backend\FoodOrderListController;
+use App\Http\Controllers\Backend\MealStatementController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\TakeLunchController;
@@ -82,6 +83,8 @@ Route::middleware(['auth'])->group(function(){
 
         Route::get('/food/entry', [FoodEntryController::class, 'foodEntry'])->name('foodEntry');
         Route::post('/food/entry', [FoodEntryController::class, 'foodEntryStore'])->name('foodEntryStore');
+
+        Route::get('meal/statement', [MealStatementController::class, 'mealStatement'])->name('mealStatement');
 
     });
 

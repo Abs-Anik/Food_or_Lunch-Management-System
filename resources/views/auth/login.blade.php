@@ -20,7 +20,7 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="login-form-head">
-                <img src="{{ asset('public/frontend/assets/images/8.png') }}" alt="" width="50px" height="50px">
+                <img src="{{ asset('public/frontend/assets/images/login.png') }}" alt="" width="100px" height="100px">
             </div>
             <div class="login-form-body">
                 <div class="form-group">
