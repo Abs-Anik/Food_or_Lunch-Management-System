@@ -1,6 +1,9 @@
 @extends('backend.layouts.master')
+@php
+$date = date('F, Y');
+@endphp
 @section('title')
-Food Statement
+Blue Pill Limited Lunch Report For the month of {{ $date }}
 @endsection
 @section('main-content')
 <div class="main-content">
@@ -51,7 +54,9 @@ Food Statement
             <div class="card">
                <div class="card-body">
                   <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                     <h4 class="header-title mb-0">Food Statement</h4>
+                     <h4 class="header-title mb-0">Blue Pill Limited</h4>
+                     <h4 class="header-title mb-0">Lunch Report</h4>
+                     <h4 class="header-title mb-0">For the month of {{ $date }}</h4>
                      {{-- <a href="{{ route('admin.menuList.create') }}"><i class="fa fa-plus-circle"></i> Add New Menu</a> --}}
                   </div>
                   <div class="table-responsive">
