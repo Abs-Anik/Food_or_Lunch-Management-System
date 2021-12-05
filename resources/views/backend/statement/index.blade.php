@@ -72,6 +72,7 @@ Blue Pill Limited Lunch Report For the month of {{ $date }}
                               <th scope="col">Base Price</th>
                               <th scope="col">Employee Contribution</th>
                               <th scope="col">Employee Paid</th>
+                              <th scope="col">Company Contribution</th>
                               {{-- <th scope="col">Total Price</th> --}}
                            </tr>
                         </thead>
@@ -87,7 +88,9 @@ Blue Pill Limited Lunch Report For the month of {{ $date }}
                                         <td>{{ $it->totalMeal*90 }}</td>
                                         <td>110</td>
                                         <td>{{ $it->food_price }}</td>
-                                        <td>{{ $it->totalMeal*$it->food_price }}</td>
+                                        <td>{{ ceil(($it->food_price/110)*($it->totalMeal*90)) }}</td>
+                                        <td>{{ ($it->totalMeal*90)-ceil(($it->food_price/110)*($it->totalMeal*90))  }}</td>
+                                        {{-- <td>{{ $it->totalMeal*$it->food_price }}</td> --}}
                                         {{-- <td>{{ $it->totalPrice }}</td> --}}
                                     </tr>
                                 @endforeach
