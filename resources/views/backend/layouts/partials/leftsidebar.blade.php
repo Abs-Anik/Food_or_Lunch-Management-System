@@ -74,11 +74,12 @@ $route = Route::current()->getName();
                     @endif
 
                     @if ($user->can('setting.view'))
-                    <li class="{{(($route == 'admin.mealStatement') ? "active" :(($route == 'admin.mealStatement') ? "active" : ""))}}">
+                    <li class="{{(($route == 'admin.mealStatement') ? "active" :(($route == 'admin.getMealStatement') ? "active" : ""))}}">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span>Monthly Summery
-                            </span></a>
+                        </span></a>
                         <ul class="collapse">
-                            <li class="{{ $route == 'admin.mealStatement' ? 'active' : '' }}"><a href="{{ route('admin.mealStatement') }}"><i class="ti-arrow-right"></i> Monthly Report</a></li>
+                            <li class="{{ $route == 'admin.mealStatement' ? 'active' : '' }}"><a href="{{ route('admin.mealStatement') }}"><i class="ti-arrow-right"></i> Current Month Report</a></li>
+                            <li class="{{ $route == 'admin.getMealStatement' ? 'active' : '' }}"><a href="{{ route('admin.getMealStatement') }}"><i class="ti-arrow-right"></i> Monthly Report</a></li>
                         </ul>
                     </li>
                     @endif

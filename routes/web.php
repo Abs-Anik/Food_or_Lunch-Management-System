@@ -85,6 +85,8 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/food/entry', [FoodEntryController::class, 'foodEntryStore'])->name('foodEntryStore');
 
         Route::get('meal/statement', [MealStatementController::class, 'mealStatement'])->name('mealStatement');
+        Route::get('meal/statement/filter', [MealStatementController::class, 'getMealStatement'])->name('getMealStatement');
+        Route::post('meal/statement/filter', [MealStatementController::class, 'getMealStatementFilter'])->name('getMealStatementFilter');
 
     });
 
