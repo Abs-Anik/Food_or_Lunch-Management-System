@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@yield('title', 'Lunch Management System')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="{{ asset('public/frontend/assets/images/lunch.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/frontend/assets/images/8.png')}}">
     @include('backend.layouts.partials.style')
     @yield('custom_css')
 </head>

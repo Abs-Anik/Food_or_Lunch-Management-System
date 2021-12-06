@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'User Dashboard')</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('public/frontend/assets/images/lunch.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/frontend/assets/images/8.png')}}">
     @include('frontend.layouts.partials.style')
   </head>
 

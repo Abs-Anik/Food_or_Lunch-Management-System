@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
       <div class="navbar nav_title" style="border: 0;">
-        <a href="{{ route('user.dashboard.index') }}" class="site_title"><img src="{{ asset('public/frontend/assets/images/8.png') }}" alt="" width="50px" height="50px"> Food Corner</a>
+        <a href="{{ route('user.dashboard.index') }}" class="site_title"><img src="{{ asset('public/frontend/assets/images/8.png') }}" alt="" width="50px" height="50px"><span style="font-size: 12px">Lunch Management System</span></a>
       </div>
 
       <div class="clearfix"></div>
