@@ -9,4 +9,10 @@
 
 ## Food Management System
 ## Lunch Management System
+## Home
+![home](https://user-images.githubusercontent.com/42112382/144986353-4a28494e-8253-455b-ad2a-f8d9688e4735.PNG)
+## User Dashboard
+![user](https://user-images.githubusercontent.com/42112382/144986479-33c68d17-0771-4184-b76e-710b3eb7d9ed.PNG)
+## Admin Dashboard
+![admin](https://user-images.githubusercontent.com/42112382/144986555-620c7121-2973-471e-b0fc-3baa276f20c8.PNG)
 
