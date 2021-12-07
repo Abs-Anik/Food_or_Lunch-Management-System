@@ -11,6 +11,14 @@
             <div class="login-form-head">
                 <h4>Reset Password</h4>
                 <p>Hey! Reset Your Password and comeback again</p>
+                @if (session('status'))
+                    <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close closeButton" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                @endif
             </div>
             <div class="login-form-body">
                 <div class="form-group">

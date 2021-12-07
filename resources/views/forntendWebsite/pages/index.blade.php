@@ -37,14 +37,14 @@
                <div class="carousel-item active" style="background-image: url('{{ asset('public/frontendWebsite/assets/img/slide/slide_1.jpg')}}');">
                   <div class="carousel-container">
                      <div class="container">
-                        <h1 class="logo"><b>F<span>oo</span>d<span>C</span><span>or</span>ner</b></h1>
+                        <h1 class="logo"><b>Lun<span>ch&nbsp;</span>Manage<span>ment&nbsp;</span><span>Sys</span>tem</b></h1>
                         @if (auth()->check() && auth()->user()->is_admin == 1)
                         <a href="{{route('admin.dashboard.index')}}" id="link" class="mt-2">
                             <span></span>
                             <span></span>
                             <span></span>
                             <span></span>
-                            Take Your Food
+                            Admin Dashboard
                         </a>
                         @elseif (auth()->check() && auth()->user()->is_admin == 0)
                         <a href="{{route('user.dashboard.index')}}" id="link" class="mt-2">

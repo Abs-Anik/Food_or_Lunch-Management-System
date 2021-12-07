@@ -2886,3 +2886,6 @@ table.dataTable thead td {
 div.dataTables_wrapper div.dataTables_length select {
     width: 70px !important;
 }
+.closeButton{
+    top: -5px !important;
+}

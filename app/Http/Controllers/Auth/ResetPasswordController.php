@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Auth;
 
 class ResetPasswordController extends Controller
 {
@@ -27,4 +28,19 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo(){
+        if(Auth::user()->is_admin == 1){
+            $notification = array(
+                'Message' => 'Your Password Has Been Reset!!',
+                'alert-type' => 'success'
+            );
+            return route('admin.dashboard.index');
+        }else{
+            $notification = array(
+                'Message' => 'Your Password Has Been Reset!!',
+                'alert-type' => 'success'
+            );
+            return route('user.dashboard.index');
+        }
+    }
 }
