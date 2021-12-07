@@ -60,7 +60,7 @@
                             <span></span>
                             <span></span>
                             <span></span>
-                            Take Your Food
+                            Login
                         </a>
                         @endif
 
@@ -71,14 +71,32 @@
                <div class="carousel-item" style="background-image: url('{{ asset('public/frontendWebsite/assets/img/slide/slide_2.jpg')}}');">
                   <div class="carousel-container">
                      <div class="container">
-                        <h1 class="logo"><b>F<span>oo</span>d<span>C</span><span>or</span>ner</b></h1>
-                        <a href="{{route('login')}}" id="link" class="mt-2">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Take Your Food
+                        <h1 class="logo"><b>Lun<span>ch&nbsp;</span>Manage<span>ment&nbsp;</span><span>Sys</span>tem</b></h1>
+                        @if (auth()->check() && auth()->user()->is_admin == 1)
+                        <a href="{{route('admin.dashboard.index')}}" id="link" class="mt-2">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Admin Dashboard
                         </a>
+                        @elseif (auth()->check() && auth()->user()->is_admin == 0)
+                        <a href="{{route('user.dashboard.index')}}" id="link" class="mt-2">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Take Your Food
+                        </a>
+                        @else
+                        <a href="{{route('login')}}" id="link" class="mt-2">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Login
+                        </a>
+                        @endif
                      </div>
                   </div>
                </div>
@@ -86,14 +104,32 @@
                <div class="carousel-item" style="background-image: url('{{ asset('public/frontendWebsite/assets/img/slide/slide_3.jpeg')}}');">
                   <div class="carousel-container">
                      <div class="container">
-                        <h1 class="logo"><b>F<span>oo</span>d<span>C</span><span>or</span>ner</b></h1>
-                        <a href="{{route('login')}}" id="link" class="mt-2">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Take Your Food
+                        <h1 class="logo"><b>Lun<span>ch&nbsp;</span>Manage<span>ment&nbsp;</span><span>Sys</span>tem</b></h1>
+                        @if (auth()->check() && auth()->user()->is_admin == 1)
+                        <a href="{{route('admin.dashboard.index')}}" id="link" class="mt-2">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Admin Dashboard
                         </a>
+                        @elseif (auth()->check() && auth()->user()->is_admin == 0)
+                        <a href="{{route('user.dashboard.index')}}" id="link" class="mt-2">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Take Your Food
+                        </a>
+                        @else
+                        <a href="{{route('login')}}" id="link" class="mt-2">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Login
+                        </a>
+                        @endif
                      </div>
                   </div>
                </div>
