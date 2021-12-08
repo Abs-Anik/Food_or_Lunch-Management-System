@@ -27,6 +27,12 @@ $route = Route::current()->getName();
                     </li>
                     @endif
 
+                    @if ($user->can('setting.view'))
+                    <li class="{{ $route == 'admin.time.management.create' ? 'active' : '' }}">
+                        <a href="{{ route('admin.time.management.create') }}" aria-expanded="true"><i class="fa fa-clock"></i><span>Time Management</span></a>
+                    </li>
+                    @endif
+
                     @if ($user->can('admin.view'))
                     <li class="{{(($route == 'admin.designation.create') ? "active" :(($route == 'admin.designation.index') ? "active" : ""))}}">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="far fa-address-card"></i><span>Designation

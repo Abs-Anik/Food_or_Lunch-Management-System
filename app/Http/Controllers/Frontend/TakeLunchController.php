@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Designation;
+use App\Models\ManageTime;
 use App\Models\MealList;
 use App\Models\MenuList;
 use Carbon\Carbon;
@@ -82,7 +83,9 @@ class TakeLunchController extends Controller
 
         $entryTime = new DateTime('now', new DateTimeZone('Asia/Dhaka'));
         $entryHour =  $entryTime->format('H');
-        $lastEntryTime = 10;
+        // $lastEntryTime = 10;
+        $lastEntryTimeDB = ManageTime::first();
+        $lastEntryTime = $lastEntryTimeDB->lastTime;
 
         $isExists  = MealList::where('meal_lists.user_id', $user_id)->where('meal_lists.strDate', $strDate)->first();
 
@@ -154,7 +157,9 @@ class TakeLunchController extends Controller
 
         $cancelTime = new DateTime('now', new DateTimeZone('Asia/Dhaka'));
         $cancelHour =  $cancelTime->format('H');
-        $lastCancelTime = 10;
+        // $lastCancelTime = 10;
+        $lastCancelTimeDB = ManageTime::first();
+        $lastCancelTime = $lastCancelTimeDB->lastTime;
 
         if($todayDate == $mealEntryDate)
         {

@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\TakeLunchController;
 use App\Http\Controllers\Backend\MenuListController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\TimeController;
 use App\Http\Controllers\Frontend\UserProfileController;
 
 /*
@@ -88,6 +89,9 @@ Route::middleware(['auth'])->group(function(){
         Route::get('meal/statement/filter', [MealStatementController::class, 'getMealStatement'])->name('getMealStatement');
         Route::post('meal/statement/filter', [MealStatementController::class, 'getMealStatementFilter'])->name('getMealStatementFilter');
 
+        Route::get('time/management', [TimeController::class, 'create'])->name('time.management.create');
+        Route::post('time/management', [TimeController::class, 'store'])->name('time.management.store');
+        Route::post('time/management/{id}', [TimeController::class, 'update'])->name('time.management.update');
     });
 
     /**
