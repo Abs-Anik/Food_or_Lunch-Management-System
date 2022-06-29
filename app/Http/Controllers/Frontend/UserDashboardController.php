@@ -52,11 +52,17 @@ class UserDashboardController extends Controller
             array_push($itemValue, $itemResult);
         }
         $totalPayable = 0;
+        $totalAmount = 0;
+        $subsidiaries = 0;
         foreach($itemValue as $item){
             foreach($item as $it){
-                $totalPayable = $totalPayable + ceil(($it->food_price/110)*($it->totalMeal*90));
+                $totalPayable = $totalPayable + ($it->totalMeal*$it->food_price);
+                $totalAmount = $totalAmount + ($it->totalMeal*90);
+                // $totalPayable = $totalPayable + ceil(($it->food_price/110)*($it->totalMeal*90));
             }
         }
-        return view('frontend.user.index', compact('todaysMeal', 'totalPayable'));
+
+        $subsidiaries = $totalAmount - $totalPayable;
+        return view('frontend.user.index', compact('todaysMeal', 'totalPayable', 'totalAmount', 'subsidiaries'));
     }
 }

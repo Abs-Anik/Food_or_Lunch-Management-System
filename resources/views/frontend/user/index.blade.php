@@ -41,13 +41,32 @@
         </div>
         <div class="x_content">
             @if(!empty($totalPayable))
-                <h1 class="text-center">{{ $totalPayable }} Taka</h1>
-                <p class="text-center"><strong>You need to pay this and it wiil be updated after entry your daily meal</strong></p>
+                <h3 class="text-center text-success">{{ $totalPayable }} Taka</h3>
+                <p class="text-center text-success"><strong>You need to pay this and it wiil be updated after entry your daily meal</strong></p>
             @else
-                <h1 class="text-center">00</h1>
+                <h3 class="text-center">00</h3>
+                <p class="text-center"><strong>You have not taken any meal</strong></p>
+            @endif
+            @if(!empty($totalAmount))
+                <h3 class="text-center">{{ $totalAmount }} Taka</h3>
+                <p class="text-center"><strong>Without Subsidiaries and it wiil be updated after entry your daily meal</strong></p>
+            @else
+                <h3 class="text-center">00</h3>
+                <p class="text-center"><strong>You have not taken any meal</strong></p>
+            @endif
+
+            @if(!empty($subsidiaries))
+                <h3 class="text-center text-info">{{ $subsidiaries }} Taka</h3>
+                <p class="text-center text-info"><strong>Subsidiaries and it wiil be updated after entry your daily meal</strong></p>
+            @elseif ($subsidiaries == 0)
+              <h3 class="text-center">00</h3>
+              <p class="text-center"><strong>You have not any Subsidiaries</strong></p>
+            @else
+                <h3 class="text-center">00</h3>
                 <p class="text-center"><strong>You have not taken any meal</strong></p>
             @endif
         </div>
+        
       </div>
     </div>
 
