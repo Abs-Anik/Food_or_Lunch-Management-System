@@ -40,24 +40,25 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
+          <p class="text-center"><sup class="text-danger">*</sup> Amounts will be updated after entering your daily meal</p>
             @if(!empty($totalPayable))
-                <h3 class="text-center text-success">{{ $totalPayable }} Taka</h3>
-                <p class="text-center text-success"><strong>You need to pay this and it wiil be updated after entry your daily meal</strong></p>
+                <h4 class="text-center text-success">{{ $totalPayable }} Taka</h4>
+                <p class="text-center text-success"><strong>You need to pay this amount.</strong></p>
             @else
                 <h3 class="text-center">00</h3>
                 <p class="text-center"><strong>You have not taken any meal</strong></p>
             @endif
             @if(!empty($totalAmount))
-                <h3 class="text-center">{{ $totalAmount }} Taka</h3>
-                <p class="text-center"><strong>Without Subsidiaries and it wiil be updated after entry your daily meal</strong></p>
+                <h4 class="text-center">{{ $totalAmount }} Taka</h4>
+                <p class="text-center"><strong>Without Subsidiaries Amount.</strong></p>
             @else
                 <h3 class="text-center">00</h3>
                 <p class="text-center"><strong>You have not taken any meal</strong></p>
             @endif
 
             @if(!empty($subsidiaries))
-                <h3 class="text-center text-info">{{ $subsidiaries }} Taka</h3>
-                <p class="text-center text-info"><strong>Subsidiaries and it wiil be updated after entry your daily meal</strong></p>
+                <h4 class="text-center text-info">{{ $subsidiaries }} Taka</h4>
+                <p class="text-center text-info"><strong>Total Subsidiaries Amount.</strong></p>
             @elseif ($subsidiaries == 0)
               <h3 class="text-center">00</h3>
               <p class="text-center"><strong>You have not any Subsidiaries</strong></p>
@@ -66,6 +67,8 @@
                 <p class="text-center"><strong>You have not taken any meal</strong></p>
             @endif
         </div>
+
+       
         
       </div>
     </div>
